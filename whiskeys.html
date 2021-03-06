@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Whiskey Exchange</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" type="text/css">
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.css" />
+</head>
+<body class="bg-gray-400">
+  
+  <div class="sign-in-or-sign-out m-8 px-4 text-white text-right">
+  <h1 class="text-center font-bold m-8 text-4xl text-white uppercase">Welcome to The Whiskey Exchange</h1>
+  
+    <!-- JavaScript puts stuff here -->
+  </div>
+  <h1 class="text-center font-bold text-4xl text-white">Whiskey Market</h1>
+  <div class="whiskeys p-2 md:flex md:flex-wrap">
+    <!-- JavaScript puts stuff here -->
+  </div>
+
+  <!-- Put the Firebase config here -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+
+  <!-- FirebaseUI Auth -->
+  <!-- https://firebaseopensource.com/projects/firebase/firebaseui-web/ -->
+  <script src="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+    apiKey: "AIzaSyC2TJ729yzyNCFGYijXfEkU0V5Ybxo-yBo",
+    authDomain: "kiei-451-76a52.firebaseapp.com",
+    projectId: "kiei-451-76a52",
+    storageBucket: "kiei-451-76a52.appspot.com",
+    messagingSenderId: "1025996709056",
+    appId: "1:1025996709056:web:e785c5cfde31db86b76125"}
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="whiskeys.js"></script>
+</body>
+</html>
