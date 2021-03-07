@@ -32,38 +32,62 @@
         document.location.href = 'whiskeys.html'
       })
 
-
-    for (let i=0; i<whiskeys.length; i++) {
-      let whiskey = whiskeys[i]
-      //console.log(whiskeys)
-      let docRef = await db.collection('watched').doc(`${whiskey.id}-${userID}`).get()
-      //console.log(docRef)
-      let watchedMovie = docRef.data()
-      //console.log(watchedMovie)
-      let opacityClass = ''
-      //if (watchedMovie) {
-        //opacityClass = 'opacity-20'
-      //}
+    // Listen for the form submit and create/render the new post
+    document.querySelector('form').addEventListener('submit', async function(event) {
+      event.preventDefault()
+      let postUsername = user.displayName
+      let postWhiskeyUrl = document.querySelector('#added-whiskey').value
+     
+      let response = await fetch('/.netlify/functions/add_whiskey', {
+        method: 'POST',
+        body: JSON.stringify({
+          userId: user.uid,
+          whiskeyUrl: postWhiskeyUrl,
+          userName: postUsername
+        })
+      })
     
-      document.querySelector('.whiskeys').insertAdjacentHTML('beforeend', `
-        <div class="w-1/5 p-4 movie-${whiskey.id}-${userID} ${opacityClass}">
-          <img src="https://image.tmdb.org/t/p/w500${whiskey.poster_path}" class="w-full">
-          <div class="flex">
-          <a href="myWhiskeyDetails.html" class="buy-button text-center text-white text-xs bg-green-500 border border-gray-400 mt-1 px-1 py-1 w-1/3 rounded">Buy</a>
-          <a href="myWhiskeyDetails.html" class="sell-button text-center text-white text-xs bg-green-500 border border-gray-400 mt-1 px-1 py-1 w-1/3 rounded">Sell</a>
-          <a href="myWhiskeyDetails.html" class="trade-button text-center text-white text-xs bg-green-500 border border-gray-400 mt-1 px-1 py-1 w-1/3 rounded">Trade</a>
-          </div>
-          </div>
-      `)
 
-      //document.querySelector(`.movie-${whiskey.id}-${userID}`).addEventListener('click', async function(event) {
-        //event.preventDefault()
-        //let whiskeyElement = document.querySelector(`.movie-${whiskey.id}-${UserID}`)
-        //whiskeyElement.classList.add('opacity-20')
-        //await db.collection('watched').doc(`${whiskey.id}-${userID}`).set({})
-      //}) 
+      let whiskeyJson = await response.json(
+        console.log(whiskeyJson))
+
+    // for (let i=0; i<whiskeys.length; i++) {
+    //   let whiskey = whiskeys[i]
+    //   console.log(whiskeys)
+    //   let docRef = await db.collection('watched').doc(`${whiskey.id}-${userID}`).get()
+    //   console.log(docRef)
+    //   let watchedMovie = docRef.data()
+    //   console.log(watchedMovie)
+    //   let opacityClass = ''
+    //   if (watchedMovie) {
+    //     opacityClass = 'opacity-20'
+    //   }
+    
+    //   document.querySelector('.whiskeys').insertAdjacentHTML('beforeend', `
+    //     <div class="w-1/5 p-4 movie-${whiskey.id}-${userID} ${opacityClass}">
+    //       <img src="https://image.tmdb.org/t/p/w500${whiskey.poster_path}" class="w-full">
+    //       <div class="flex">
+    //       <a href="myWhiskeyDetails.html" class="buy-button text-center text-white text-xs bg-green-500 border border-gray-400 mt-1 px-1 py-1 w-1/3 rounded">Buy</a>
+    //       <a href="myWhiskeyDetails.html" class="sell-button text-center text-white text-xs bg-green-500 border border-gray-400 mt-1 px-1 py-1 w-1/3 rounded">Sell</a>
+    //       <a href="myWhiskeyDetails.html" class="trade-button text-center text-white text-xs bg-green-500 border border-gray-400 mt-1 px-1 py-1 w-1/3 rounded">Trade</a>
+    //       </div>
+    //       </div>
+    //   `)
+
+    //   document.querySelector(`.movie-${whiskey.id}-${userID}`).addEventListener('click', async function(event) {
+    //     event.preventDefault()
+    //     let whiskeyElement = document.querySelector(`.movie-${whiskey.id}-${UserID}`)
+    //     whiskeyElement.classList.add('opacity-20')
+    //     await db.collection('watched').doc(`${whiskey.id}-${userID}`).set({})
+    //   }) 
       
-    }} else {
+
+    document.querySelector('#image-url').value = '' // clear the image url field
+      renderPost( postId, postUsername, postImageUrl, numberOfLikes )
+    })
+
+    
+   } else {
       console.log('signed out')
       let ui = new firebaseui.auth.AuthUI(firebase.auth())
       console.log(ui)
