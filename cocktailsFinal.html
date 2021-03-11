@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Whiskey Exchange</title>
+  <title>The Cocktail Market</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" type="text/css">
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.css" />
 </head>
@@ -12,7 +12,7 @@
   
   
   <div class="sign-in-or-sign-out m-8 px-4 text-white text-right">
-  <h1 class="text-center font-bold m-8 text-4xl text-white uppercase">Welcome to The Cocktail Exchange</h1>
+  <h1 class="text-center font-bold m-8 text-4xl text-white uppercase">Welcome to The Cocktail Market</h1>
   
   
  
@@ -21,15 +21,15 @@
   </div>
   <h1 class="text-center font-bold text-4xl text-white">Cocktail Market</h1>
 
-<!-- button to add your own whiskey  -->
+<!-- button to add your own cocktail  -->
 <div>
   <form class="w-full text-center">
-    <input type="text" id="added-whiskey" name="added-whiskey" placeholder="Add Whiskey" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+    <input type="text" id="added-cocktail" name="added-cocktail" placeholder="Add Cocktail" class="my-2 p-2 w-64 border border-gray-400 rounded shadow-xl focus:outline-none focus:ring-purple-500 focus:border-purple-500">
     <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl">Add</button>
   </form>
 </div>
   
-  <div class="text-center font-bold text-l text-white"> <a href=https://www.whisky.com/whisky-database/bottle-search.html> Click Here to find some Whiskeys!</a></div>
+  <div class="text-center font-bold text-l text-white"> <a href=https://www.whisky.com/whisky-database/bottle-search.html> Click Here to find Cocktails!</a></div>
   <div class="whiskeys cocktails p-2 md:flex md:flex-wrap">
 
 
@@ -65,6 +65,6 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
-  <script src="whiskeys.js"></script>
+  <script src="cocktailsFinal.js"></script>
 </body>
 </html>

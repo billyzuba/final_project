@@ -29,27 +29,27 @@
       document.querySelector('.sign-in-or-sign-out').addEventListener('click', function(event) {
         console.log('sign out clicked')
         firebase.auth().signOut()
-        document.location.href = 'whiskeys.html'
+        document.location.href = 'cocktailsFinal.html'
       })
 
     // Listen for the form submit and create/render the new post
     //document.querySelector('form').addEventListener('submit', async function(event) {
       //event.preventDefault()
       //let postUsername = user.displayName
-      //let postWhiskeyUrl = document.querySelector('#added-whiskey').value
+      //let postCocktailUrl = document.querySelector('#added-cocktail').value
      
-      //let response = await fetch('/.netlify/functions/add_whiskey', {
+      //let response = await fetch('/.netlify/functions/add_cocktail', {
         //method: 'POST',
         //body: JSON.stringify({
          // userId: user.uid,
-          //whiskeyUrl: postWhiskeyUrl,
+          //cocktailUrl: postCocktailUrl,
           //userName: postUsername
         //})
       //})
     
 
-      //let whiskeyJson = await response.json(
-        //console.log(whiskeyJson))
+      //let cocktailJson = await response.json(
+        //console.log(cocktailJson))
 
      for (let i=0; i<cocktails.length; i++) {
        let cocktail = cocktails[i]
@@ -67,15 +67,22 @@
          <div class="w-1/5 p-4 cocktail-${cocktail.strDrinkThumb}-${userID} ${opacityClass}">
            <img src="${cocktail.strDrinkThumb}" class="w-full">
            <div class="flex">
-           <a href="myWhiskeyDetails.html" class="buy-button text-center text-white text-xl text-strong bg-green-500 border border-gray-400 mt-1 px-1 py-2 w-full rounded">Buy</a>
+
+
+         
+
+          <a class="text-3xl md:mx-0 mx-4 text-center text-white text-xl text-strong border border-gray-400 mt-1 px-1 py-1 w-1/3 rounded> <button class="like-button">❤️</button>
+          <a class="text-3xl md:mx-0 mx-4 text-center text-white text-xl text-strong border border-gray-400 mt-1 px-1 py-2 w-1/3 rounded> <button class="like-button">👎</button> 
+          <a href="cocktailDetails.html" class="buy-button text-center text-white text-xl text-strong bg-green-500 border border-gray-400 mt-1 px-1 py-2.5 w-1/3 rounded">Buy</a>
+
            </div>
            </div>
        `)
 
        //document.querySelector(`.cocktail-${cocktail.strDrinkThumb}-${userID}`).addEventListener('click', async function(event) {
          //event.preventDefault()
-         //let whiskeyElement = document.querySelector(`.cocktail-${cocktail.strDrinkThumb}-${UserID}`)
-         //whiskeyElement.classList.add('opacity-20')
+         //let cocktailElement = document.querySelector(`.cocktail-${cocktail.strDrinkThumb}-${UserID}`)
+         //cocktailElement.classList.add('opacity-20')
          //await db.collection('watched').doc(`${cocktail.strDrinkThumb}-${userID}`).set({})
        //}) 
       
@@ -93,7 +100,7 @@
         signInOptions: [
           firebase.auth.EmailAuthProvider.PROVIDER_ID
         ],
-        signInSuccessURL: 'whiskeys.html'
+        signInSuccessURL: 'cocktailsFinal.html'
       }
       ui.start('.sign-in-or-sign-out', authUIConfig)
     }
