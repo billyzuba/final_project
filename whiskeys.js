@@ -3,11 +3,11 @@
   firebase.auth().onAuthStateChanged(async function (user){
     let db = firebase.firestore()
     console.log(db)
-    let apiKey = '657128272c528825d4a3b01a7668bcb0'
-    let response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US`)
+    //let apiKey = '1'
+    let response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=Cocktail_glass`)
     let json = await response.json()
-    let whiskeys = json.results
-    console.log(whiskeys)
+    let cocktails = json.drinks
+    console.log(cocktails)
   
   
     if (user) {
@@ -33,61 +33,59 @@
       })
 
     // Listen for the form submit and create/render the new post
-    document.querySelector('form').addEventListener('submit', async function(event) {
-      event.preventDefault()
-      let postUsername = user.displayName
-      let postWhiskeyUrl = document.querySelector('#added-whiskey').value
+    //document.querySelector('form').addEventListener('submit', async function(event) {
+      //event.preventDefault()
+      //let postUsername = user.displayName
+      //let postWhiskeyUrl = document.querySelector('#added-whiskey').value
      
-      let response = await fetch('/.netlify/functions/add_whiskey', {
-        method: 'POST',
-        body: JSON.stringify({
-          userId: user.uid,
-          whiskeyUrl: postWhiskeyUrl,
-          userName: postUsername
-        })
-      })
+      //let response = await fetch('/.netlify/functions/add_whiskey', {
+        //method: 'POST',
+        //body: JSON.stringify({
+         // userId: user.uid,
+          //whiskeyUrl: postWhiskeyUrl,
+          //userName: postUsername
+        //})
+      //})
     
 
-      let whiskeyJson = await response.json(
-        console.log(whiskeyJson))
+      //let whiskeyJson = await response.json(
+        //console.log(whiskeyJson))
 
-    // for (let i=0; i<whiskeys.length; i++) {
-    //   let whiskey = whiskeys[i]
-    //   console.log(whiskeys)
-    //   let docRef = await db.collection('watched').doc(`${whiskey.id}-${userID}`).get()
-    //   console.log(docRef)
-    //   let watchedMovie = docRef.data()
-    //   console.log(watchedMovie)
-    //   let opacityClass = ''
-    //   if (watchedMovie) {
-    //     opacityClass = 'opacity-20'
-    //   }
+     for (let i=0; i<cocktails.length; i++) {
+       let cocktail = cocktails[i]
+       console.log(cocktail)
+       let docRef = await db.collection('watched').doc(`${cocktails.strDrinkThumb}-${userID}`).get()
+       //console.log(docRef)
+       let watchedMovie = docRef.data()
+       //console.log(watchedMovie)
+       let opacityClass = ''
+       if (watchedMovie) {
+         opacityClass = 'opacity-20'
+       }
     
-    //   document.querySelector('.whiskeys').insertAdjacentHTML('beforeend', `
-    //     <div class="w-1/5 p-4 movie-${whiskey.id}-${userID} ${opacityClass}">
-    //       <img src="https://image.tmdb.org/t/p/w500${whiskey.poster_path}" class="w-full">
-    //       <div class="flex">
-    //       <a href="myWhiskeyDetails.html" class="buy-button text-center text-white text-xs bg-green-500 border border-gray-400 mt-1 px-1 py-1 w-1/3 rounded">Buy</a>
-    //       <a href="myWhiskeyDetails.html" class="sell-button text-center text-white text-xs bg-green-500 border border-gray-400 mt-1 px-1 py-1 w-1/3 rounded">Sell</a>
-    //       <a href="myWhiskeyDetails.html" class="trade-button text-center text-white text-xs bg-green-500 border border-gray-400 mt-1 px-1 py-1 w-1/3 rounded">Trade</a>
-    //       </div>
-    //       </div>
-    //   `)
+       document.querySelector('.cocktails').insertAdjacentHTML('beforeend', `
+         <div class="w-1/5 p-4 cocktail-${cocktail.strDrinkThumb}-${userID} ${opacityClass}">
+           <img src="${cocktail.strDrinkThumb}" class="w-full">
+           <div class="flex">
+           <a href="myWhiskeyDetails.html" class="buy-button text-center text-white text-xl text-strong bg-green-500 border border-gray-400 mt-1 px-1 py-2 w-full rounded">Buy</a>
+           </div>
+           </div>
+       `)
 
-    //   document.querySelector(`.movie-${whiskey.id}-${userID}`).addEventListener('click', async function(event) {
-    //     event.preventDefault()
-    //     let whiskeyElement = document.querySelector(`.movie-${whiskey.id}-${UserID}`)
-    //     whiskeyElement.classList.add('opacity-20')
-    //     await db.collection('watched').doc(`${whiskey.id}-${userID}`).set({})
-    //   }) 
+       //document.querySelector(`.cocktail-${cocktail.strDrinkThumb}-${userID}`).addEventListener('click', async function(event) {
+         //event.preventDefault()
+         //let whiskeyElement = document.querySelector(`.cocktail-${cocktail.strDrinkThumb}-${UserID}`)
+         //whiskeyElement.classList.add('opacity-20')
+         //await db.collection('watched').doc(`${cocktail.strDrinkThumb}-${userID}`).set({})
+       //}) 
       
 
-    document.querySelector('#image-url').value = '' // clear the image url field
-      renderPost( postId, postUsername, postImageUrl, numberOfLikes )
-    })
+    //document.querySelector('#image-url').value = '' // clear the image url field
+      //renderPost( postId, postUsername, postImageUrl, numberOfLikes )
+    //})
 
     
-   } else {
+   }} else {
       console.log('signed out')
       let ui = new firebaseui.auth.AuthUI(firebase.auth())
       console.log(ui)
