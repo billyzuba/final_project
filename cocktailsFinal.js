@@ -95,52 +95,86 @@ firebase.auth().onAuthStateChanged(async function (user) {
         event.preventDefault()
         console.log(`${user.displayName} liked ${cocktail.idDrink}`)
 
-        let currentuser = firebase.auth().currentuser
-        await db.collection('liked Cocktails').add({
-          cocktailName: cocktail.strDrink,
-          cocktailId: cocktail.idDrink,
-          likedByName: user.displayName,
-          likedById: user.uid,
-          likedByEmail: user.email
+    let likeResponse = await fetch('http://localhost:8888/.netlify/functions/like_button', {
+        method: 'POST',
+        body: JSON.stringify({
+           cocktailName: cocktail.strDrink,
+           cocktailId: cocktail.idDrink,
+           likedByName: user.displayName,
+           likedById: user.uid,
+           likedByEmail: user.email
         })
-
       })
+
+
+      // let likeResponse = await fetch('http://localhost:8888/.netlify/functions/like', {
+      //   method: 'POST',
+      //   body: JSON.stringify({
+      //      cocktailName: cocktail.strDrink,
+      //      cocktailId: cocktail.idDrink,
+      //      likedByName: user.displayName,
+      //      likedById: user.uid,
+      //      likedByEmail: user.email
+      //   })
+      })
+
 
       let dislikeButton = document.querySelector(`.dislike-button-for-${cocktail.idDrink}`)
       dislikeButton.addEventListener('click', async function (event) {
         event.preventDefault()
         console.log(`${user.displayName} disliked ${cocktail.idDrink}`)
 
-        let currentuser = firebase.auth().currentuser
-        await db.collection('disliked Cocktails').add({
-          cocktailName: cocktail.strDrink,
-          cocktailId: cocktail.idDrink,
-          dislikedByName: user.displayName,
-          dislikedById: user.uid,
-          dislikedByEmail: user.email
+        let dislikeResponse = await fetch('http://localhost:8888/.netlify/functions/dislike_button', {
+          method: 'POST',
+          body: JSON.stringify({
+             cocktailName: cocktail.strDrink,
+             cocktailId: cocktail.idDrink,
+             likedByName: user.displayName,
+             likedById: user.uid,
+             likedByEmail: user.email
+
+        // let currentuser = firebase.auth().currentuser
+        // await db.collection('disliked Cocktails').add({
+        //   cocktailName: cocktail.strDrink,
+        //   cocktailId: cocktail.idDrink,
+        //   dislikedByName: user.displayName,
+        //   dislikedById: user.uid,
+        //   dislikedByEmail: user.email
         })
 
       })
+    })
 
       let buyButton = document.querySelector(`.buy-button-for-${cocktail.idDrink}`)
       buyButton.addEventListener('click', async function (event) {
         event.preventDefault()
         console.log(`you want to buy ${cocktail.idDrink}`)
 
-        let currentuser = firebase.auth().currentuser
-        await db.collection('Cocktails to Buy').add({
-          cocktailName: cocktail.strDrink,
-          cocktailId: cocktail.idDrink,
-          buyerName: user.displayName,
-          buyerId: user.uid,
-          buyerEmail: user.email
+        // let currentuser = firebase.auth().currentuser
+        // await db.collection('Cocktails to Buy').add({
+        //   cocktailName: cocktail.strDrink,
+        //   cocktailId: cocktail.idDrink,
+        //   buyerName: user.displayName,
+        //   buyerId: user.uid,
+        //   buyerEmail: user.email
+
+        let buyResponse = await fetch('http://localhost:8888/.netlify/functions/buy_button', {
+          method: 'POST',
+          body: JSON.stringify({
+             cocktailName: cocktail.strDrink,
+             cocktailId: cocktail.idDrink,
+             likedByName: user.displayName,
+             likedById: user.uid,
+             likedByEmail: user.email
+
         })
       })
 
 
 
-    }
-  } else {
+    })
+  }
+ } else {
     console.log('signed out')
     let ui = new firebaseui.auth.AuthUI(firebase.auth())
     console.log(ui)
