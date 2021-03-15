@@ -3,7 +3,7 @@ let firebase = require('./firebase')
 exports.handler = async function(event) {
   // let data = [] // sample only...
 
-  let currentuser = firebase.auth().currentuser
+  // let currentuser = firebase.auth().currentuser
 
 let cocktailDb = firebase.firestore()
 let post = JSON.parse(event.body)
@@ -20,23 +20,24 @@ console.log(likedQuery.size)
                 
 
 // check if post was already like and add it to database if not
-if (likedQuery.size == 0){
+if (likedQuery.size == 0) {
   await cocktailDb.collection('liked Cocktails').add({
-    cocktailName: cocktail.strDrink,
-    cocktailId: cocktail.idDrink,
-    likedByName: user.displayName,
-    likedById: user.uid,
-    likedByEmail: user.email
+    cocktailName: cocktailName,
+    cocktailId: cocktailId,
+    likedByName: likedByName,
+    likedById: likedById,
+    likedByEmail: likedByEmail
   })
   return {
     statusCode: 200,
     body: JSON.stringify({success: true})
   }
 
-  else {
+} else {
     return {
       statuscode: 403,
       body: JSON.stringify({success: false, error: 'Cocktail already liked'})
     }
+}
 }
 

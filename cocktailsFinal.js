@@ -57,7 +57,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
       let docRef = await db.collection('watched').doc(`${cocktails.strDrinkThumb}-${userID}`).get()
       //console.log(docRef)
       let addedCocktail = docRef.data()
-      //console.log(watchedMovie)
+     
       let opacityClass = ''
       if (addedCocktail) {
         opacityClass = 'opacity-20'
