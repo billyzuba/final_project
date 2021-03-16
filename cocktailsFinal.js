@@ -15,6 +15,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
     let userEmail = user.email
     let userName = user.displayName
     let userID = user.uid
+    let postNumberOfLikes = 0
 
     db.collection('users').doc(user.uid).set({
       userID: userID,
@@ -62,25 +63,26 @@ firebase.auth().onAuthStateChanged(async function (user) {
       if (addedCocktail) {
         opacityClass = 'opacity-20'
       }
-
+    
       document.querySelector('.cocktails').insertAdjacentHTML('beforeend', `
          <div class="w-1/5 p-4 cocktail-${cocktail.idDrink}">
+         <div class="text-center font-bold">${cocktail.strDrink}</div>
            <img src="${cocktail.strDrinkThumb}" class="w-full">
-           <div class="flex">
-          
+           <div class="md:flex">
+        
 
-           
-         
 
-          <div class="text-3xl md:mx-0 mx-4 ">
+          <div class="text-center text-3xl md:mx-0 mx-4 w-1/3">
            <button class="like-button-for-${cocktail.idDrink}"> ❤️ </button> 
+           <span class="likes">${postNumberOfLikes}</span>
            </div> 
-          <div class="text-3xl md:mx-0 mx-4">
-          <button class="dislike-button-for-${cocktail.idDrink}">👎</button> 
+          <div class="text-center text-3xl md:mx-0 mx-4 w-1/3">
+          <button class="dislike-button-for-${cocktail.idDrink}">👎</button>
+          <span class="dislikes">${postNumberOfLikes}</span> 
           </div>
          
-           <div class="text-3xl md:mx-0 mx-4">
-           <button class="buy-button-for-${cocktail.idDrink} text-center text-white text-xl text-strong bg-green-500 border border-green-400 rounded"> Buy </button> 
+           <div class="text-center text-3xl md:mx-0 mx-4 w-1/3">
+           <button class="buy-button-for-${cocktail.idDrink} text-center text-white text-xl font-bold bg-green-500 border pl-6 pr-6 pt-1 pb-1 my-1 border-green-400 rounded"> Buy </button> 
            </div>
 
            </div>
@@ -93,7 +95,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
 
       likeButton.addEventListener('click', async function (event) {
         event.preventDefault()
-        console.log(`${user.displayName} liked ${cocktail.idDrink}`)
+        console.log(`${user.displayName} liked ${cocktail.strDrink}`)
 
     let likeResponse = await fetch('http://localhost:8888/.netlify/functions/like_button', {
         method: 'POST',
@@ -122,7 +124,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
       let dislikeButton = document.querySelector(`.dislike-button-for-${cocktail.idDrink}`)
       dislikeButton.addEventListener('click', async function (event) {
         event.preventDefault()
-        console.log(`${user.displayName} disliked ${cocktail.idDrink}`)
+        console.log(`${user.displayName} disliked ${cocktail.strDrink}`)
 
         let dislikeResponse = await fetch('http://localhost:8888/.netlify/functions/dislike_button', {
           method: 'POST',
@@ -148,7 +150,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
       let buyButton = document.querySelector(`.buy-button-for-${cocktail.idDrink}`)
       buyButton.addEventListener('click', async function (event) {
         event.preventDefault()
-        console.log(`you want to buy ${cocktail.idDrink}`)
+        console.log(`You want to buy ${cocktail.strDrink}`)
 
         // let currentuser = firebase.auth().currentuser
         // await db.collection('Cocktails to Buy').add({
