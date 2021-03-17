@@ -15,7 +15,11 @@ firebase.auth().onAuthStateChanged(async function (user) {
     let userEmail = user.email
     let userName = user.displayName
     let userID = user.uid
+    // let likesJSON = await fetch('http://localhost:8888/.netlify/functions/get_likes')
+    // let numLikes = await likesJSON.json()
     let numLikes = 0
+    // console.log(numLikes)
+
     let numDislikes = 0
 
     db.collection('users').doc(user.uid).set({
@@ -36,15 +40,15 @@ firebase.auth().onAuthStateChanged(async function (user) {
 
     for (let i = 0; i < cocktails.length; i++) {
       let cocktail = cocktails[i]
-      //console.log(cocktail)
-      let docRef = await db.collection('watched').doc(`${cocktails.strDrinkThumb}-${userID}`).get()
-      //console.log(docRef)
-      let addedCocktail = docRef.data()
+      // //console.log(cocktail)
+      // let docRef = await db.collection('watched').doc(`${cocktails.strDrinkThumb}-${userID}`).get()
+      // //console.log(docRef)
+      // let addedCocktail = docRef.data()
 
-      let opacityClass = ''
-      if (addedCocktail) {
-        opacityClass = 'opacity-20'
-      }
+      // let opacityClass = ''
+      // if (addedCocktail) {
+      //   opacityClass = 'opacity-20'
+      // }
 
       document.querySelector('.cocktails').insertAdjacentHTML('beforeend', `
          <div class="w-1/5 p-4 cocktail-${cocktail.idDrink}">
@@ -116,7 +120,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
           })
         })
         console.log(dislikeResponse)
-        if (dislikeResponse.ok){
+        if (dislikeResponse.ok) {
           let numDislikes = document.querySelector(`.dislikes-for-${cocktail.idDrink}`).innerHTML
           let newNumDislikes = parseInt(numDislikes) + 1
           document.querySelector(`.dislikes-for-${cocktail.idDrink}`).innerHTML = newNumDislikes
