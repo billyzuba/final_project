@@ -15,10 +15,10 @@ firebase.auth().onAuthStateChanged(async function (user) {
     let userEmail = user.email
     let userName = user.displayName
     let userID = user.uid
-    let likesJSON = await fetch('http://localhost:8888/.netlify/functions/get_likes')
-    let numLikes = await likesJSON.json()
+    // let likesJSON = await fetch('http://localhost:8888/.netlify/functions/get_likes')
+    // let numLikes = await likesJSON.json()
     
-    // let numLikes = 0
+    let numLikes = 0
     console.log(numLikes)
 
     let numDislikes = 0
@@ -168,7 +168,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
       signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID
       ],
-      signInSuccessURL: 'cocktailsFinal.html'
+      signInSuccessURL: 'index.html'
     }
     ui.start('.sign-in-or-sign-out', authUIConfig)
   }
