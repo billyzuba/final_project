@@ -15,10 +15,10 @@ firebase.auth().onAuthStateChanged(async function (user) {
     let userEmail = user.email
     let userName = user.displayName
     let userID = user.uid
-    // let likesJSON = await fetch('http://localhost:8888/.netlify/functions/get_likes')
-    // let numLikes = await likesJSON.json()
+    let likesJSON = await fetch('http://localhost:8888/.netlify/functions/get_likes')
+    let numLikes = await likesJSON.json()
     
-    let numLikes = 0
+    // let numLikes = 0
     console.log(numLikes)
 
     let numDislikes = 0
@@ -36,7 +36,7 @@ firebase.auth().onAuthStateChanged(async function (user) {
     document.querySelector('.sign-in-or-sign-out').addEventListener('click', function (event) {
       console.log('sign out clicked')
       firebase.auth().signOut()
-      document.location.href = 'cocktailsFinal.html'
+      document.location.href = 'index.html'
     })
 
     for (let i = 0; i < cocktails.length; i++) {
