@@ -1,3 +1,4 @@
+
 let firebase = require('./firebase')
 
 
@@ -11,6 +12,7 @@ let likesData = []
 let likesQuery = await db.collection('liked Cocktails').orderBy('cocktailId').get()
 
 let likes = likesQuery.docs
+
 
 for (let i=0; i<likes.length; i++) {
     let cocktailId = likes[i].cocktailId
