@@ -17,8 +17,9 @@ firebase.auth().onAuthStateChanged(async function (user) {
     let userID = user.uid
     // let likesJSON = await fetch('http://localhost:8888/.netlify/functions/get_likes')
     // let numLikes = await likesJSON.json()
+    
     let numLikes = 0
-    // console.log(numLikes)
+    console.log(numLikes)
 
     let numDislikes = 0
 
@@ -100,6 +101,8 @@ firebase.auth().onAuthStateChanged(async function (user) {
           let newNumLikes = parseInt(numLikes) + 1
           document.querySelector(`.likes-for-${cocktail.idDrink}`).innerHTML = newNumLikes
           console.log(newNumLikes)
+        } else {
+          console.log(`Cocktail was already liked by ${user.displayName}`)
         }
       })
 
@@ -126,6 +129,8 @@ firebase.auth().onAuthStateChanged(async function (user) {
           document.querySelector(`.dislikes-for-${cocktail.idDrink}`).innerHTML = newNumDislikes
           console.log(newNumDislikes)
 
+        } else {
+          console.log(`Cocktail was already disliked by ${user.displayName}`)
         }
       })
 
