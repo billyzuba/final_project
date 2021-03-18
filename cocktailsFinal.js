@@ -15,8 +15,8 @@ firebase.auth().onAuthStateChanged(async function (user) {
     let userEmail = user.email
     let userName = user.displayName
     let userID = user.uid
-    // let likesJSON = await fetch('http://localhost:8888/.netlify/functions/get_likes')
-    // let numLikes =  await likesJSON.json()
+    let likesJSON = await fetch('http://localhost:8888/.netlify/functions/get_likes')
+    let numLikesRead =  await likesJSON.json()
     
     // let likeDisplay = 0
     // // console.log(likeDisplay)
