@@ -18,14 +18,11 @@ firebase.auth().onAuthStateChanged(async function (user) {
     // let likesJSON = await fetch('http://localhost:8888/.netlify/functions/get_likes')
     // let numLikes =  await likesJSON.json()
     
-// let likeDisplay = 0
-// // console.log(likeDisplay)
+    // let likeDisplay = 0
+    // // console.log(likeDisplay)
+    
     let numLikes = 0
     console.log(numLikes)
-
-    
-
-
 
     let numDislikes = 0
 
@@ -72,28 +69,28 @@ firebase.auth().onAuthStateChanged(async function (user) {
     for (let i = 0; i < cocktails.length; i++) {
       let cocktail = cocktails[i]
 
-
       document.querySelector('.cocktails').insertAdjacentHTML('beforeend', `
-         <div class="w-1/5 p-4 cocktail-${cocktail.idDrink}">
-         <div class="text-center font-bold">${cocktail.strDrink}</div>
-           <img src="${cocktail.strDrinkThumb}" class="w-full">
-           <div class="md:flex">
+        <div class="md:w-1/5 p-4 cocktail-${cocktail.idDrink}">
+            <div class="text-center font-bold">${cocktail.strDrink}</div>
+              <img src="${cocktail.strDrinkThumb}" class="w-full">
+          <div class="md:flex">
 
-          <div class="text-center text-3xl md:mx-0 mx-4 w-1/3">
-           <button class="like-button-for-${cocktail.idDrink}"> ❤️ </button> 
-           <span class="likes-for-${cocktail.idDrink}">${numLikes}</span>
-           </div> 
-          <div class="text-center text-3xl md:mx-0 mx-4 w-1/3">
-          <button class="dislike-button-for-${cocktail.idDrink}">👎</button>
-          <span class="dislikes-for-${cocktail.idDrink}">${numDislikes}</span> 
-          </div>
+            <div class="text-center text-3xl md:mx-0 mx-4 md:w-1/3">
+              <button class="like-button-for-${cocktail.idDrink}"> ❤️ </button> 
+              <span class="likes-for-${cocktail.idDrink}">${numLikes}</span>
+            </div> 
+
+            <div class="text-center text-3xl mx-0 mx-4 md:w-1/3">
+              <button class="dislike-button-for-${cocktail.idDrink}">👎</button>
+              <span class="dislikes-for-${cocktail.idDrink}">${numDislikes}</span> 
+            </div>
          
-           <div class="text-center text-3xl md:mx-0 mx-4 w-1/3">
-           <button class="buy-button-for-${cocktail.idDrink} text-center text-white text-xl font-bold bg-green-500 border pl-6 pr-6 pt-1 pb-1 my-1 border-green-400 rounded"> Buy </button> 
-           </div>
+            <div class="text-center text-3xl mx-0 mx-4 md:w-1/3">
+              <button class="buy-button-for-${cocktail.idDrink} text-center text-white text-xl font-bold bg-green-500 border pl-6 pr-6 pt-1 pb-1 my-1 border-green-400 rounded"> Buy </button> 
+            </div>
 
-           </div>
-           </div>
+          </div>
+        </div>
        `)
 
 // old button counters
