@@ -17,13 +17,13 @@ firebase.auth().onAuthStateChanged(async function (user) {
     let userID = user.uid
     // let likesJSON = await fetch('http://localhost:8888/.netlify/functions/get_likes')
     // let numLikes =  await likesJSON.json()
-    
-// let likeDisplay = 0
-// // console.log(likeDisplay)
+
+    // let likeDisplay = 0
+    // // console.log(likeDisplay)
     let numLikes = 0
     console.log(numLikes)
 
-    
+
 
 
 
@@ -45,28 +45,28 @@ firebase.auth().onAuthStateChanged(async function (user) {
       document.location.href = 'index.html'
     })
 
-  //   document.querySelector('.sign-in-or-sign-out').insertAdjacentHTML('beforeend', `
-  //   <div class="text-center text-3xl md:mx-0 mx-4 w-1/3">
-  //  Liked Cocktails
-  //   <div class="liked-Cocktails"> ❤️ </div> 
-  //   <span class="likes-counter">${likeDisplay}</span>
-  //   </div> 
+    //   document.querySelector('.sign-in-or-sign-out').insertAdjacentHTML('beforeend', `
+    //   <div class="text-center text-3xl md:mx-0 mx-4 w-1/3">
+    //  Liked Cocktails
+    //   <div class="liked-Cocktails"> ❤️ </div> 
+    //   <span class="likes-counter">${likeDisplay}</span>
+    //   </div> 
 
-  //  <div class="text-center text-3xl md:mx-0 mx-4 w-1/3"> Disliked Cocktails
-  //         <button class="disliked-Cocktails">👎</button>
-  //         <span class="dislikes-counter">0</span> 
-  //         </div>
-    
-  //   `)
+    //  <div class="text-center text-3xl md:mx-0 mx-4 w-1/3"> Disliked Cocktails
+    //         <button class="disliked-Cocktails">👎</button>
+    //         <span class="dislikes-counter">0</span> 
+    //         </div>
 
-  //   for (let j = 0; j < numLikes.length; j++ ){
-  //     if (numLikes[j].likedBy == userID) {
-       
-  //       document.querySelector('.likes-counter').innerHTML = likeDisplay + 1
-        
-  //     } else{
-  //     }
-  //   }
+    //   `)
+
+    //   for (let j = 0; j < numLikes.length; j++ ){
+    //     if (numLikes[j].likedBy == userID) {
+
+    //       document.querySelector('.likes-counter').innerHTML = likeDisplay + 1
+
+    //     } else{
+    //     }
+    //   }
 
 
     for (let i = 0; i < cocktails.length; i++) {
@@ -96,9 +96,9 @@ firebase.auth().onAuthStateChanged(async function (user) {
            </div>
        `)
 
-// old button counters
+      // old button counters
 
-// 
+      // 
 
       // old code for buy button (converted from link to button) like and dislike button <a href="cocktailDetails.html" class="buy-button text-center text-white text-xl text-strong bg-green-500 border border-gray-400 mt-1 px-1 py-2.5 w-1/3 rounded">Buy</a>
 

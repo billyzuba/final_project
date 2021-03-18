@@ -28,6 +28,9 @@ exports.handler = async function (event) {
     // let likesQuantity = await db.collection('liked Cocktails').where('cocktailId', '==', cocktailId).get()
 // console.log(likesQuantity)
 // console.log(likesQuantity.size)
+
+
+
     likesData.push({
             likedBy: cocktailData.likedById,
             likesNum: likesQuantity.size
