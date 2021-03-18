@@ -16,7 +16,10 @@ firebase.auth().onAuthStateChanged(async function (user) {
     let userName = user.displayName
     let userID = user.uid
     // let likesJSON = await fetch('http://localhost:8888/.netlify/functions/get_likes')
-    // let numLikes = await likesJSON.json()
+    // let numLikes =  await likesJSON.json()
+    
+    // let likeDisplay = 0
+    // // console.log(likeDisplay)
     
     let numLikes = 0
     console.log(numLikes)
@@ -39,42 +42,60 @@ firebase.auth().onAuthStateChanged(async function (user) {
       document.location.href = 'index.html'
     })
 
+    //   document.querySelector('.sign-in-or-sign-out').insertAdjacentHTML('beforeend', `
+    //   <div class="text-center text-3xl md:mx-0 mx-4 w-1/3">
+    //  Liked Cocktails
+    //   <div class="liked-Cocktails"> ❤️ </div> 
+    //   <span class="likes-counter">${likeDisplay}</span>
+    //   </div> 
+
+    //  <div class="text-center text-3xl md:mx-0 mx-4 w-1/3"> Disliked Cocktails
+    //         <button class="disliked-Cocktails">👎</button>
+    //         <span class="dislikes-counter">0</span> 
+    //         </div>
+
+    //   `)
+
+    //   for (let j = 0; j < numLikes.length; j++ ){
+    //     if (numLikes[j].likedBy == userID) {
+
+    //       document.querySelector('.likes-counter').innerHTML = likeDisplay + 1
+
+    //     } else{
+    //     }
+    //   }
+
+
     for (let i = 0; i < cocktails.length; i++) {
       let cocktail = cocktails[i]
-      // //console.log(cocktail)
-      // let docRef = await db.collection('watched').doc(`${cocktails.strDrinkThumb}-${userID}`).get()
-      // //console.log(docRef)
-      // let addedCocktail = docRef.data()
-
-      // let opacityClass = ''
-      // if (addedCocktail) {
-      //   opacityClass = 'opacity-20'
-      // }
 
       document.querySelector('.cocktails').insertAdjacentHTML('beforeend', `
-         <div class="w-1/5 p-4 cocktail-${cocktail.idDrink}">
-         <div class="text-center font-bold">${cocktail.strDrink}</div>
-           <img src="${cocktail.strDrinkThumb}" class="w-full">
-           <div class="md:flex">
-        
+        <div class="md:w-1/5 p-4 cocktail-${cocktail.idDrink}">
+            <div class="text-center font-bold">${cocktail.strDrink}</div>
+              <img src="${cocktail.strDrinkThumb}" class="w-full">
+          <div class="md:flex">
 
+            <div class="text-center text-3xl md:mx-0 mx-4 md:w-1/3">
+              <button class="like-button-for-${cocktail.idDrink}"> ❤️ </button> 
+              <span class="likes-for-${cocktail.idDrink}">${numLikes}</span>
+            </div> 
 
-          <div class="text-center text-3xl md:mx-0 mx-4 w-1/3">
-           <button class="like-button-for-${cocktail.idDrink}"> ❤️ </button> 
-           <span class="likes-for-${cocktail.idDrink}">${numLikes}</span>
-           </div> 
-          <div class="text-center text-3xl md:mx-0 mx-4 w-1/3">
-          <button class="dislike-button-for-${cocktail.idDrink}">👎</button>
-          <span class="dislikes-for-${cocktail.idDrink}">${numDislikes}</span> 
-          </div>
+            <div class="text-center text-3xl mx-0 mx-4 md:w-1/3">
+              <button class="dislike-button-for-${cocktail.idDrink}">👎</button>
+              <span class="dislikes-for-${cocktail.idDrink}">${numDislikes}</span> 
+            </div>
          
-           <div class="text-center text-3xl md:mx-0 mx-4 w-1/3">
-           <button class="buy-button-for-${cocktail.idDrink} text-center text-white text-xl font-bold bg-green-500 border pl-6 pr-6 pt-1 pb-1 my-1 border-green-400 rounded"> Buy </button> 
-           </div>
+            <div class="text-center text-3xl mx-0 mx-4 md:w-1/3">
+              <button class="buy-button-for-${cocktail.idDrink} text-center text-white text-xl font-bold bg-green-500 border pl-6 pr-6 pt-1 pb-1 my-1 border-green-400 rounded"> Buy </button> 
+            </div>
 
-           </div>
-           </div>
+          </div>
+        </div>
        `)
+
+      // old button counters
+
+      // 
 
       // old code for buy button (converted from link to button) like and dislike button <a href="cocktailDetails.html" class="buy-button text-center text-white text-xl text-strong bg-green-500 border border-gray-400 mt-1 px-1 py-2.5 w-1/3 rounded">Buy</a>
 
